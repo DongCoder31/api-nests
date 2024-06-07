@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const { MONGO_DB_CONFIG } = require("./config/app.config");
 const errors = require("./middleware/errors.js");
+require("dotenv").config();
 const swaggerUi = require("swagger-ui-express"), swaggerDocument = require("./swagger.json");
 const cors = require('cors');
 // connect to mongodb
@@ -17,7 +18,7 @@ const cors = require('cors');
  */
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(MONGO_DB_CONFIG.DB, {
+  .connect(process.env.MONGODB_CONNECT_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000,
@@ -31,6 +32,7 @@ mongoose
       console.log("Database can't be connected: " + error);
     }
   );
+app.use(express.json());
 
 app.use(cors({
   origin: '*'
@@ -50,5 +52,5 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // listen for requests
 app.listen(process.env.port || 5000, function () {
   console.log("Ready to Go!");
-  console.log(MONGO_DB_CONFIG.DB);
+  console.log(process.env.MONGODB_CONNECT_URI);
 });
