@@ -20,6 +20,8 @@ mongoose
   .connect(MONGO_DB_CONFIG.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // 30 giây
+    socketTimeoutMS: 45000 
   })
   .then(
     () => {
