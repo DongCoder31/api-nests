@@ -20,8 +20,8 @@ mongoose
   .connect(MONGO_DB_CONFIG.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000, // 30 giây
-    socketTimeoutMS: 45000 
+    serverSelectionTimeoutMS: 30000,
+    socketTimeoutMS: 45000
   })
   .then(
     () => {
@@ -31,9 +31,10 @@ mongoose
       console.log("Database can't be connected: " + error);
     }
   );
-  app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:4000']
-  }));
+
+app.use(cors({
+  origin: '*'
+}));
 
 app.use(express.json());
 
@@ -49,5 +50,5 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // listen for requests
 app.listen(process.env.port || 5000, function () {
   console.log("Ready to Go!");
-  console.log("http://localhost:5000/api-docs")
+  console.log(MONGO_DB_CONFIG.DB);
 });

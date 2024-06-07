@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "api-nests.onrender",
+  "host": "localhost:5000",
   "basePath": "/",
   "tags": [
     {
