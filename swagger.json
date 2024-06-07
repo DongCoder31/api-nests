@@ -1,0 +1,337 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "See Nests App - CRUD",
+    "description": "By vanhai1998",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Products",
+      "description": "Products API"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/products": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get all products",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ServiceResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Products"],
+        "summary": "Create Product API",
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "formData",
+            "description": "Product Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "productDescription",
+            "in": "formData",
+            "description": "Product Description",
+            "type": "string"
+          },
+          {
+            "name": "productPrice",
+            "in": "formData",
+            "description": "Product Price",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "productImage",
+            "in": "formData",
+            "description": "Product Image",
+            "type": "file"
+          },
+          {
+            "name": "company",
+            "in": "formData",
+            "description": "Product Company",
+            "type": "string"
+          },
+          {
+            "name": "avatar",
+            "in": "formData",
+            "description": "Product avatar",
+            "type": "string"
+          },
+          {
+            "name": "colors",
+            "in": "formData",
+            "description": "Product Colors (comma separated)",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "formData",
+            "description": "Product Category",
+            "type": "string"
+          },
+          {
+            "name": "featured",
+            "in": "formData",
+            "description": "Is Product Featured",
+            "type": "boolean"
+          },
+          {
+            "name": "stock",
+            "in": "formData",
+            "description": "Product Stock",
+            "type": "integer"
+          },
+          {
+            "name": "reviews",
+            "in": "formData",
+            "description": "Product Reviews",
+            "type": "integer"
+          },
+          {
+            "name": "stars",
+            "in": "formData",
+            "description": "Product Stars",
+            "type": "number",
+            "format": "float"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ServiceResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/products/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Product Id",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Products"],
+        "summary": "Product Details based on Product Id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ServiceResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Products"],
+        "summary": "Update Product API",
+        "parameters": [
+          {
+            "name": "productName",
+            "in": "formData",
+            "description": "Product Name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "productDescription",
+            "in": "formData",
+            "description": "Product Description",
+            "type": "string"
+          },
+          {
+            "name": "productPrice",
+            "in": "formData",
+            "description": "Product Price",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "productImage",
+            "in": "formData",
+            "description": "Product Image",
+            "type": "file"
+          },
+          {
+            "name": "company",
+            "in": "formData",
+            "description": "Product Company",
+            "type": "string"
+          },
+          {
+            "name": "colors",
+            "in": "formData",
+            "description": "Product Colors (comma separated)",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "formData",
+            "description": "Product Category",
+            "type": "string"
+          },
+          {
+            "name": "featured",
+            "in": "formData",
+            "description": "Is Product Featured",
+            "type": "boolean"
+          },
+          {
+            "name": "stock",
+            "in": "formData",
+            "description": "Product Stock",
+            "type": "integer"
+          },
+          {
+            "name": "reviews",
+            "in": "formData",
+            "description": "Product Reviews",
+            "type": "integer"
+          },
+          {
+            "name": "stars",
+            "in": "formData",
+            "description": "Product Stars",
+            "type": "number",
+            "format": "float"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ServiceResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "Delete Product API",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ServiceResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "required": ["id", "name", "company", "price", "description", "category", "stock", "reviews", "stars", "images"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "colors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "featured": {
+          "type": "boolean"
+        },
+        "stock": {
+          "type": "integer"
+        },
+        "reviews": {
+          "type": "integer"
+        },
+        "stars": {
+          "type": "number",
+          "format": "float"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "width", "height", "url", "filename", "size", "type"]
+    },
+    "ServiceResponse": {
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Product"
+          }
+        }
+      }
+    }
+  }
+}
